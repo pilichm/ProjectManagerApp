@@ -3,12 +3,15 @@ package pl.pilichm.projectmanagerapp
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_sign_in.*
+import pl.pilichm.projectmanagerapp.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySignInBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_in)
+        binding = ActivitySignInBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         window.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -19,14 +22,14 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun setUpActionBar(){
-        setSupportActionBar(toolbarSignInActivity)
+        setSupportActionBar(binding.toolbarSignInActivity)
         val actionBar = supportActionBar
         if (actionBar!=null){
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_black_color_back_24dp)
         }
 
-        toolbarSignInActivity.setNavigationOnClickListener {
+        binding.toolbarSignInActivity.setNavigationOnClickListener {
             onBackPressed()
         }
     }
